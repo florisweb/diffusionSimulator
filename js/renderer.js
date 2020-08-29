@@ -18,6 +18,18 @@ function _Renderer(_canvas) {
 				this.drawTile(x, y, _tileGrid[x][y]);
 			}
 		}
+
+
+		ctx.fillStyle = "#aaa";
+		ctx.fillText(
+			"Velocity: " + Math.round(Simulation.object.velocity * 10) / 10 + " m/s",
+			10, 20
+		);
+		ctx.fillText(
+			"Air resistance: " + Math.round(Simulation.object.curAirResistance * 100) / 100 + " N?",
+			10, 35
+		);
+
 	}
 
 
@@ -47,7 +59,7 @@ function _Renderer(_canvas) {
 		ctx.fill();
 
 
-		// ctx.fillStyle = "#000";
+		// ctx.fillStyle = "#aaa";
 		// ctx.fillText(
 		// 	Math.round(_object.value * 100) / 100, 
 		// 	canvasX + Simulation.world.tileSize / 2 - 10, 
@@ -57,9 +69,7 @@ function _Renderer(_canvas) {
 
 
 	function valueToColor(_value) {
-		let c = 100;
-		let dc = (255 - c) / 10;
-		return "rgb(" + (c + _value * dc) + ", " + c + ", " + (2 * c - _value * dc) + ")";
+		return "rgb(" + _value * 51 + ", 0, 0)";
 	}
 
 
