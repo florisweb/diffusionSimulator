@@ -10,7 +10,7 @@ function _Renderer(_canvas) {
 
 	this.draw = function(_tileGrid) {
 		this.clear();
-		
+
 		for (let x = 0; x < _tileGrid.length; x++) 
 		{
 			for (let y = 0; y < _tileGrid[x].length; y++) 
@@ -21,12 +21,23 @@ function _Renderer(_canvas) {
 	}
 
 
-	this.drawTile = function(_x, _y, _value) {
+	this.drawTile = function(_x, _y, _object) {
 		let canvasX = Simulation.world.tileSize * _x;
 		let canvasY = Simulation.world.tileSize * _y;
 
+
+
 		ctx.strokeStyle = "#aaa";
-		ctx.fillStyle = "rgba(255, 0, 0, " + (_value / 10) + ")";
+		
+
+		if (_object.type == "none") 
+		{
+			ctx.fillStyle = "rgba(255, 0, 0, " + (_object.value / 10) + ")";
+		} else {
+			ctx.fillStyle = "#555";
+		}
+
+
 		
 		ctx.beginPath();
 		ctx.rect(canvasX, canvasY, Simulation.world.tileSize, Simulation.world.tileSize);
@@ -34,6 +45,14 @@ function _Renderer(_canvas) {
 		
 		ctx.stroke();
 		ctx.fill();
+
+
+		ctx.fillStyle = "#000";
+		ctx.fillText(
+			Math.round(_object.value * 100) / 100, 
+			canvasX + Simulation.world.tileSize / 2 - 10, 
+			canvasY + Simulation.world.tileSize / 2 + 3
+		);
 	}
 
 
