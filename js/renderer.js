@@ -32,9 +32,9 @@ function _Renderer(_canvas) {
 
 		if (_object.type == "none") 
 		{
-			ctx.fillStyle = "rgba(255, 0, 0, " + (_object.value / 10) + ")";
+			ctx.fillStyle = valueToColor(_object.value); 
 		} else {
-			ctx.fillStyle = "#555";
+			ctx.fillStyle = "#eee";
 		}
 
 
@@ -43,16 +43,23 @@ function _Renderer(_canvas) {
 		ctx.rect(canvasX, canvasY, Simulation.world.tileSize, Simulation.world.tileSize);
 		ctx.closePath();
 		
-		ctx.stroke();
+		// ctx.stroke();
 		ctx.fill();
 
 
-		ctx.fillStyle = "#000";
-		ctx.fillText(
-			Math.round(_object.value * 100) / 100, 
-			canvasX + Simulation.world.tileSize / 2 - 10, 
-			canvasY + Simulation.world.tileSize / 2 + 3
-		);
+		// ctx.fillStyle = "#000";
+		// ctx.fillText(
+		// 	Math.round(_object.value * 100) / 100, 
+		// 	canvasX + Simulation.world.tileSize / 2 - 10, 
+		// 	canvasY + Simulation.world.tileSize / 2 + 3
+		// );
+	}
+
+
+	function valueToColor(_value) {
+		let c = 100;
+		let dc = (255 - c) / 10;
+		return "rgb(" + (c + _value * dc) + ", " + c + ", " + (2 * c - _value * dc) + ")";
 	}
 
 

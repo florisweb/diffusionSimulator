@@ -7,6 +7,7 @@ const App = new function() {
 		Simulation 	= new _Simulation();
 		Renderer 	= new _Renderer(renderCanvas);
 
+		Simulation.tileGrid[13][10].value = 500;
 		this.update();
 	}
 
